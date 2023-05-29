@@ -8,9 +8,11 @@ public class Fish : MonoBehaviour
 
     [SerializeField] float _speed = 9f;
 
-    int _angle;
-    int _maxAngle = 20;
-    int _minAngle = -60;
+    int angle;
+    int maxAngle = 20;
+    int minAngle = -60;
+
+    public Score score;
 
     void Awake()
     {
@@ -27,19 +29,27 @@ public class Fish : MonoBehaviour
 
         if(_rb.velocity.y > 0) 
         {
-            if(_angle <= _maxAngle)
+            if(angle <= maxAngle)
             {
-                _angle = _angle + 4;
+                angle = angle + 4;
             }
             ;
         }
         else if(_rb.velocity.y < -2.5f)
         {
-            if(_angle > _minAngle) 
+            if(angle > minAngle) 
             {
-                _angle = _angle - 2;
+                angle = angle - 2;
             }
         }
-        transform.rotation = Quaternion.Euler(0, 0, _angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Obstacle"))
+        {
+            score.Scored();
+        }
     }
 }

@@ -36,7 +36,13 @@ public class GroundLeftMovement : MonoBehaviour
             }
         }
 
-
+        if(gameObject.CompareTag("Obstacle"))
+        {
+            if(transform.position.x <= GameManager.bottomLeft.x - obstacleWidth)
+            {
+                Destroy(this.gameObject);
+            }
+        }
 
     }
 }
