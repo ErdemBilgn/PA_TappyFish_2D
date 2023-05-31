@@ -1561,6 +1561,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4501754b7009930418b08e8879cc98da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelScore: {fileID: 2080508007}
+  panelHighScore: {fileID: 1465753055}
 --- !u!114 &2072422949
 MonoBehaviour:
   m_ObjectHideFlags: 0
