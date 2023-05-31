@@ -26,9 +26,12 @@ public class GroundLeftMovement : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector2(transform.position.x - _speed * Time.deltaTime, transform.position.y);
+        if(!GameManager.gameOver)
+        {
+            transform.position = new Vector2(transform.position.x - _speed * Time.deltaTime, transform.position.y);
+        }
 
-        if(gameObject.CompareTag("Ground"))
+        if (gameObject.CompareTag("Ground"))
         {
             if (transform.position.x <= -groundWidth)
             {

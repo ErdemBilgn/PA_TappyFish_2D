@@ -22,6 +22,7 @@ public class Fish : MonoBehaviour
 
     SpriteRenderer sp;
     Animator anim;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
