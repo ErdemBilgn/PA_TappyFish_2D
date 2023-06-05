@@ -24,6 +24,8 @@ public class Fish : MonoBehaviour
     SpriteRenderer sp;
     Animator anim;
 
+    [SerializeField] AudioSource swim, hit, point;
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -48,6 +50,7 @@ public class Fish : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !GameManager.gameOver)
         {
+            swim.Play();
             if(!GameManager.gameStarted)
             {
                 _rb.gravityScale = 5f;
@@ -94,11 +97,13 @@ public class Fish : MonoBehaviour
         if(collision.CompareTag("Obstacle"))
         {
             score.Scored();
+            point.Play();
         }
-        else if(collision.CompareTag("Column"))
+        else if(collision.CompareTag("Column") && !GameManager.gameOver)
         {
             // game over state.
             gameManager.GameOver();
+            FishDieEffect();
         }
     }
 
@@ -111,8 +116,14 @@ public class Fish : MonoBehaviour
                 // game over state.
                 gameManager.GameOver();
                 GameOverFish();
+                FishDieEffect();
             }
         }
+    }
+
+    void FishDieEffect()
+    {
+        hit.Play();
     }
 
     void GameOverFish()
